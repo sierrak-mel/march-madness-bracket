@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>March Madness 2025 — Bracket Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="site-header">
+      <div class="header-bg"></div>
+      <div class="header-inner">
+        <div class="header-title">
+          <span class="year-tag">2025</span>
+          <h1>March Madness</h1>
+          <p class="subtitle">Interactive Bracket Predictor</p>
+        </div>
+        <div class="header-controls">
+          <button id="btn-reset" class="btn btn-ghost">↺ Reset</button>
+          <button id="btn-autofill" class="btn btn-accent">⚡ Auto-Fill by Seed</button>
+          <button id="btn-share" class="btn btn-primary">⬡ Share Bracket</button>
+        </div>
+      </div>
+      <div class="header-stats" id="header-stats">
+        <div class="stat"><span class="stat-val" id="stat-picks">0</span><span class="stat-lbl">Picks Made</span></div>
+        <div class="stat"><span class="stat-val" id="stat-remaining">63</span><span class="stat-lbl">Remaining</span></div>
+        <div class="stat"><span class="stat-val" id="stat-upsets">0</span><span class="stat-lbl">Upsets Picked</span></div>
+        <div class="stat"><span class="stat-val" id="stat-champion">—</span><span class="stat-lbl">Champion</span></div>
+      </div>
+    </header>
+
+    <div class="bracket-container" id="bracket-container">
+      <!-- Built by JS -->
+    </div>
+
+    <!-- Tooltip -->
+    <div class="matchup-tooltip" id="tooltip" style="display:none">
+      <div class="tooltip-inner">
+        <div class="tooltip-teams"></div>
+        <div class="tooltip-odds"></div>
+        <div class="tooltip-history"></div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
