@@ -2,7 +2,7 @@
 
 An interactive NCAA tournament bracket predictor built for your GitHub portfolio.
 
-**[Live Demo →](#)** *(replace with your GitHub Pages URL)*
+**[Live Demo →](https://sierrak-mel.github.io/march-madness-bracket/)**
 
 ---
 
@@ -16,15 +16,6 @@ An interactive NCAA tournament bracket predictor built for your GitHub portfolio
 - ✅ Persistent state via localStorage
 - ✅ Stats bar: picks made, upsets chosen, champion
 - ✅ Responsive dark theme
-
----
-
-## Deploy to GitHub Pages
-
-1. **Create a new repo** on GitHub (e.g. `march-madness-bracket`)
-2. Push all files in this folder
-3. Go to **Settings → Pages → Deploy from branch → main → / (root)**
-4. Your bracket is live at `https://yourusername.github.io/march-madness-bracket`
 
 ---
 
