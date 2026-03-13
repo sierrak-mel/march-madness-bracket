@@ -414,32 +414,149 @@ function updateStats() {
 
 function showTooltip(e, teamA, teamB, probA, probB, region) {
   const tooltip = document.getElementById('tooltip');
-  const lore = getSeedLore(teamA.seed, teamB.seed);
+  const rec = getRecommendation(teamA, teamB);
 
-  tooltip.querySelector('.tooltip-teams').innerHTML = `
-    <strong>${teamA.name}</strong> (#${teamA.seed}) vs <strong>${teamB.name}</strong> (#${teamB.seed})
-  `;
-  tooltip.querySelector('.tooltip-odds').innerHTML = `
-    <div class="prob-bar-wrap">
-      <div class="prob-bar" style="width:${Math.round(probA*100)}%;background:${region.color}"></div>
+  // Star rating (1-5) based on score
+  function stars(score) {
+    const filled = Math.round(score / 20);
+    return '★'.repeat(filled) + '☆'.repeat(5 - filled);
+  }
+
+  function statBar(val, max, color) {
+    const pct = Math.round((val / max) * 100);
+    return `<div class="stat-bar-wrap"><div class="stat-bar-fill" style="width:${pct}%;background:${color}"></div></div>`;
+  }
+
+  tooltip.innerHTML = `
+    <div class="tooltip-inner">
+
+      <div class="tooltip-rec-header">
+        <span class="rec-label">📊 PICK RECOMMENDATION</span>
+        <span class="rec-confidence" style="color:${rec.confidenceColor}">
+          ${rec.confidenceLabel} CONFIDENCE
+        </span>
+      </div>
+
+      <div class="tooltip-pick-banner" style="border-color:${rec.confidenceColor}">
+        <span class="pick-arrow">▶</span>
+        <span class="pick-team">${rec.pick.name}</span>
+        <span class="pick-seed">#${rec.pick.seed}</span>
+        <span class="pick-score" style="color:${rec.confidenceColor}">${rec.pickScore}/100</span>
+      </div>
+
+      ${rec.upsetAlert ? `
+        <div class="upset-alert">
+          ⚠️ UPSET ALERT — History favors a surprise here
+        </div>` : ''}
+
+      <div class="tooltip-matchup-title">
+        ${teamA.name} <span style="color:var(--text-muted)">vs</span> ${teamB.name}
+      </div>
+
+      <div class="tooltip-teams-grid">
+
+        <div class="tooltip-team-col ${rec.pick.name === teamA.name ? 'rec-team' : ''}">
+          <div class="ttc-header">
+            <span class="ttc-seed">#${teamA.seed}</span>
+            <span class="ttc-name">${teamA.name}</span>
+            ${rec.pick.name === teamA.name ? `<span class="ttc-rec-badge" style="color:${rec.confidenceColor}">✓ PICK</span>` : ''}
+          </div>
+          <div class="ttc-score-row">
+            <span class="ttc-score-num">${rec.teamA.score}</span>
+            <span class="ttc-score-lbl">/100</span>
+            <span class="ttc-stars">${stars(rec.teamA.score)}</span>
+          </div>
+          <div class="ttc-stats">
+            <div class="ttc-stat">
+              <span class="ttcs-lbl">Win prob</span>
+              <span class="ttcs-val">${Math.round(probA * 100)}%</span>
+              ${statBar(probA, 1, region.color)}
+            </div>
+            <div class="ttc-stat">
+              <span class="ttcs-lbl">R1 rate '08-25</span>
+              <span class="ttcs-val">${rec.teamA.hist.r1Record}</span>
+              ${statBar(rec.teamA.hist.r1WinPct, 1, region.color)}
+            </div>
+            <div class="ttc-stat">
+              <span class="ttcs-lbl">Final Four %</span>
+              <span class="ttcs-val">${Math.round(rec.teamA.hist.finalFourPct * 100)}%</span>
+              ${statBar(rec.teamA.hist.finalFourPct, 0.6, region.color)}
+            </div>
+            <div class="ttc-stat">
+              <span class="ttcs-lbl">Avg exit</span>
+              <span class="ttcs-val">${getAvgRoundName(teamA.seed)}</span>
+            </div>
+            <div class="ttc-stat">
+              <span class="ttcs-lbl">Cinderella 🎯</span>
+              <span class="ttcs-val cinderella">${rec.teamA.hist.cinderellaScore}/100</span>
+              ${statBar(rec.teamA.hist.cinderellaScore, 100, '#a78bfa')}
+            </div>
+          </div>
+        </div>
+
+        <div class="tooltip-divider"></div>
+
+        <div class="tooltip-team-col ${rec.pick.name === teamB.name ? 'rec-team' : ''}">
+          <div class="ttc-header">
+            <span class="ttc-seed">#${teamB.seed}</span>
+            <span class="ttc-name">${teamB.name}</span>
+            ${rec.pick.name === teamB.name ? `<span class="ttc-rec-badge" style="color:${rec.confidenceColor}">✓ PICK</span>` : ''}
+          </div>
+          <div class="ttc-score-row">
+            <span class="ttc-score-num">${rec.teamB.score}</span>
+            <span class="ttc-score-lbl">/100</span>
+            <span class="ttc-stars">${stars(rec.teamB.score)}</span>
+          </div>
+          <div class="ttc-stats">
+            <div class="ttc-stat">
+              <span class="ttcs-lbl">Win prob</span>
+              <span class="ttcs-val">${Math.round(probB * 100)}%</span>
+              ${statBar(probB, 1, '#4ECDC4')}
+            </div>
+            <div class="ttc-stat">
+              <span class="ttcs-lbl">R1 rate '08-25</span>
+              <span class="ttcs-val">${rec.teamB.hist.r1Record}</span>
+              ${statBar(rec.teamB.hist.r1WinPct, 1, '#4ECDC4')}
+            </div>
+            <div class="ttc-stat">
+              <span class="ttcs-lbl">Final Four %</span>
+              <span class="ttcs-val">${Math.round(rec.teamB.hist.finalFourPct * 100)}%</span>
+              ${statBar(rec.teamB.hist.finalFourPct, 0.6, '#4ECDC4')}
+            </div>
+            <div class="ttc-stat">
+              <span class="ttcs-lbl">Avg exit</span>
+              <span class="ttcs-val">${getAvgRoundName(teamB.seed)}</span>
+            </div>
+            <div class="ttc-stat">
+              <span class="ttcs-lbl">Cinderella 🎯</span>
+              <span class="ttcs-val cinderella">${rec.teamB.hist.cinderellaScore}/100</span>
+              ${statBar(rec.teamB.hist.cinderellaScore, 100, '#a78bfa')}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tooltip-footnote">
+        ${rec.pick.name === teamA.name ? rec.teamA.hist.deepRunNote : rec.teamB.hist.deepRunNote}
+      </div>
+
     </div>
-    <div class="prob-labels">
-      <span>${teamA.name}: ${Math.round(probA*100)}%</span>
-      <span>${teamB.name}: ${Math.round(probB*100)}%</span>
-    </div>
   `;
-  tooltip.querySelector('.tooltip-history').innerHTML = lore
-    ? `<div class="lore">${lore}</div>` : '';
 
   tooltip.style.display = 'block';
   positionTooltip(e, tooltip);
 }
 
 function positionTooltip(e, tooltip) {
-  const x = e.clientX + 15;
-  const y = e.clientY - 10;
-  tooltip.style.left = `${Math.min(x, window.innerWidth - 260)}px`;
-  tooltip.style.top = `${Math.min(y, window.innerHeight - 150)}px`;
+  const w = tooltip.offsetWidth || 480;
+  const h = tooltip.offsetHeight || 320;
+  let x = e.clientX + 18;
+  let y = e.clientY - 20;
+  if (x + w > window.innerWidth - 12) x = e.clientX - w - 12;
+  if (y + h > window.innerHeight - 12) y = window.innerHeight - h - 12;
+  tooltip.style.left = `${Math.max(8, x)}px`;
+  tooltip.style.top = `${Math.max(8, y)}px`;
 }
 
 function hideTooltip() {
