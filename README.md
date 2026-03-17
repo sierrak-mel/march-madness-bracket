@@ -1,58 +1,38 @@
 # 🏀 March Madness Bracket Predictor
 
-An interactive NCAA tournament bracket predictor built for your GitHub portfolio.
+An interactive NCAA tournament bracket tool I built to make filling out your bracket a little smarter.
 
-**[Live Demo →](https://sierrak-mel.github.io/march-madness-bracket/)**
-
----
-
-## Features
-
-- ✅ Full 64-team interactive bracket — click to advance teams
-- ✅ Win probability % on every matchup (seed-based historical model)
-- ✅ Hover tooltips with matchup history & odds bar
-- ✅ Auto-fill by seed (favorites only)
-- ✅ Shareable bracket via URL encoding
-- ✅ Persistent state via localStorage
-- ✅ Stats bar: picks made, upsets chosen, champion
-- ✅ Responsive dark theme
+**[Try it here →](https://sierrak-mel.github.io/march-madness-bracket/)**
 
 ---
 
-## Upgrade: Pull Live Data from ESPN API
+## What it does
 
-Once the 2026 bracket is released (Selection Sunday, ~March 15), swap in real data:
+- Full 64-team interactive bracket — click to advance teams through each round
+- Win probability % on every matchup, based on historical seed data
+- Hover over any matchup to get a stat breakdown and pick recommendation
+- Auto-fill the bracket by seed (all favorites)
+- Share your bracket with anyone via a URL
+- Saves your picks automatically so you don't lose progress
+- Tracks your picks, upsets chosen, and champion at a glance
 
-```javascript
-// In app.js or a new api.js file:
-async function fetchBracket() {
-  // ESPN unofficial API — no key required
-  const res = await fetch(
-    'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?groups=100&limit=64'
-  );
-  const data = await res.json();
-  return data;
-}
+---
 
-// For tournament bracket specifically:
-async function fetchTournamentBracket() {
-  const res = await fetch(
-    'https://site.api.espn.com/apis/v2/sports/basketball/mens-college-basketball/tournaments/22?year=2026'
-  );
-  const data = await res.json();
-  return data;
-}
-```
+## How the recommendations work
 
-> **Note:** ESPN's unofficial API has no official documentation and endpoints can change.
-> The bracket data in `data.js` is hardcoded from the 2025 tournament as a reliable fallback.
+When you hover a matchup, the tool shows a recommendation based on real 2008–2025 tournament data. Each team gets a composite score factoring in:
+
+- Win probability for that specific seed matchup
+- How often that seed reaches the Final Four historically
+- Championship rate since 2008
+
+It also flags known upset matchups (like 5 vs 12) and gives a confidence rating — HIGH, MEDIUM, or TOSS-UP — so you know when to trust the pick and when to roll the dice.
 
 ---
 
 ## Win Probability Model
 
-Probabilities come from historical seed matchup data (1985–2024 tournaments).
-The key numbers:
+Probabilities are derived from historical seed matchup results (1985–2025).
 
 | Matchup | Higher Seed Win % |
 |---------|-------------------|
@@ -61,7 +41,7 @@ The key numbers:
 | 5 vs 12 | 64.4% ← classic upset alert |
 | 8 vs 9  | 51.9% ← coin flip |
 
-For non-first-round matchups, the app uses a logistic model:
+For later-round matchups where seeds haven't met before, the app uses a logistic model:
 `P = 1 / (1 + e^(-0.35 * (seedB - seedA)))`
 
 ---
@@ -69,18 +49,18 @@ For non-first-round matchups, the app uses a logistic model:
 ## File Structure
 
 ```
-march-madness/
+march-madness-bracket/
 ├── index.html   # App shell + layout
 ├── style.css    # Dark sports theme
-├── data.js      # 2025 bracket data + probability model
-├── app.js       # Bracket engine + rendering + interactions
+├── data.js      # Bracket data + probability model + historical seed stats
+├── app.js       # Bracket engine, rendering, and interactions
 └── README.md    # This file
 ```
 
 ---
 
-## Credits
+## Built with
 
-- Tournament data: ESPN / NCAA (2025)
-- Historical win rates: [FiveThirtyEight / NCAA historical results]
-- Built with vanilla HTML/CSS/JS — no frameworks, no build step
+- Vanilla HTML, CSS, and JavaScript — no frameworks, no build step
+- Tournament data: ESPN / NCAA (2026)
+- Historical win rates: NCAA tournament records 2008–2025
