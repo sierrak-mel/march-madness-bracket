@@ -1,15 +1,15 @@
 // ============================================================
-// 2025 NCAA Tournament — Complete 64-Team Bracket Data
+// 2026 NCAA Tournament — Complete 64-Team Bracket Data
 // Source: ESPN / NCAA official bracket
-// Win probabilities derived from historical seed matchup data (1985–2024)
+// Win probabilities derived from historical seed matchup data (1985–2025)
 // ============================================================
 
 const TOURNAMENT_DATA = {
-  year: 2025,
-  champion: "Florida", // actual 2025 champion
+  year: 2026,
+  champion: null, // TBD
 
   // Historical win rate by seed matchup (seed1 vs seed2)
-  // Based on 1985-2024 tournament results
+  // Based on 1985-2025 tournament results
   winProb: {
     "1v16": 0.987, "2v15": 0.938, "3v14": 0.848,
     "4v13": 0.793, "5v12": 0.644, "6v11": 0.622,
@@ -29,22 +29,22 @@ const TOURNAMENT_DATA = {
       color: "#FF6B35",
       finalFourSlot: 0,
       teams: [
-        { seed: 1,  name: "Duke",           abbr: "DUKE",  record: "35-3"  },
-        { seed: 2,  name: "Alabama",         abbr: "ALA",   record: "26-8"  },
-        { seed: 3,  name: "Wisconsin",       abbr: "WIS",   record: "27-8"  },
-        { seed: 4,  name: "Arizona",         abbr: "ARIZ",  record: "27-8"  },
-        { seed: 5,  name: "Oregon",          abbr: "ORE",   record: "25-9"  },
-        { seed: 6,  name: "BYU",             abbr: "BYU",   record: "24-10" },
-        { seed: 7,  name: "St. John's",      abbr: "SJU",   record: "28-6"  },
-        { seed: 8,  name: "Mississippi St.", abbr: "MSST",  record: "22-12" },
-        { seed: 9,  name: "Baylor",          abbr: "BAY",   record: "22-13" },
-        { seed: 10, name: "Vanderbilt",      abbr: "VAN",   record: "22-12" },
-        { seed: 11, name: "VCU",             abbr: "VCU",   record: "25-9"  },
-        { seed: 12, name: "Liberty",         abbr: "LIB",   record: "31-5"  },
-        { seed: 13, name: "Akron",           abbr: "AKR",   record: "28-6"  },
-        { seed: 14, name: "Montana",         abbr: "MONT",  record: "27-8"  },
-        { seed: 15, name: "Robert Morris",   abbr: "RMU",   record: "26-9"  },
-        { seed: 16, name: "Am. University",  abbr: "AU",    record: "24-12" },
+        { seed: 1,  name: "Duke",             abbr: "DUKE",  record: "32-2"  },
+        { seed: 2,  name: "Connecticut",       abbr: "UCONN", record: "29-5"  },
+        { seed: 3,  name: "Michigan St.",      abbr: "MSU",   record: "25-7"  },
+        { seed: 4,  name: "Kansas",            abbr: "KAN",   record: "23-10" },
+        { seed: 5,  name: "St. John's",        abbr: "SJU",   record: "28-6"  },
+        { seed: 6,  name: "Louisville",        abbr: "LOU",   record: "23-10" },
+        { seed: 7,  name: "UCLA",              abbr: "UCLA",  record: "23-11" },
+        { seed: 8,  name: "Ohio State",        abbr: "OSU",   record: "21-12" },
+        { seed: 9,  name: "TCU",               abbr: "TCU",   record: "22-11" },
+        { seed: 10, name: "UCF",               abbr: "UCF",   record: "21-11" },
+        { seed: 11, name: "South Florida",     abbr: "USF",   record: "25-8"  },
+        { seed: 12, name: "Northern Iowa",     abbr: "UNI",   record: "23-12" },
+        { seed: 13, name: "Cal Baptist",       abbr: "CBU",   record: "25-8"  },
+        { seed: 14, name: "North Dakota St.",  abbr: "NDSU",  record: "27-7"  },
+        { seed: 15, name: "Furman",            abbr: "FUR",   record: "22-12" },
+        { seed: 16, name: "Siena",             abbr: "SIE",   record: "23-11" },
       ]
     },
     {
@@ -53,22 +53,22 @@ const TOURNAMENT_DATA = {
       color: "#4ECDC4",
       finalFourSlot: 1,
       teams: [
-        { seed: 1,  name: "Florida",         abbr: "FLA",   record: "32-4"  },
-        { seed: 2,  name: "St. Mary's",      abbr: "SMC",   record: "27-5"  },
-        { seed: 3,  name: "Kentucky",        abbr: "UK",    record: "26-8"  },
-        { seed: 4,  name: "Maryland",        abbr: "UMD",   record: "27-7"  },
-        { seed: 5,  name: "Memphis",         abbr: "MEM",   record: "24-9"  },
-        { seed: 6,  name: "Clemson",         abbr: "CLEM",  record: "23-11" },
-        { seed: 7,  name: "UCLA",            abbr: "UCLA",  record: "22-12" },
-        { seed: 8,  name: "Gonzaga",         abbr: "GONZ",  record: "26-8"  },
-        { seed: 9,  name: "Georgia",         abbr: "UGA",   record: "21-13" },
-        { seed: 10, name: "Utah St.",        abbr: "USU",   record: "29-6"  },
-        { seed: 11, name: "Drake",           abbr: "DRA",   record: "31-4"  },
-        { seed: 12, name: "UC San Diego",    abbr: "UCSD",  record: "31-5"  },
-        { seed: 13, name: "High Point",      abbr: "HPU",   record: "30-4"  },
-        { seed: 14, name: "Lipscomb",        abbr: "LIP",   record: "27-8"  },
-        { seed: 15, name: "Wofford",         abbr: "WOF",   record: "24-10" },
-        { seed: 16, name: "SIU Edwards.",    abbr: "SIUE",  record: "23-12" },
+        { seed: 1,  name: "Arizona",           abbr: "ARIZ",  record: "32-2"  },
+        { seed: 2,  name: "Purdue",            abbr: "PUR",   record: "27-8"  },
+        { seed: 3,  name: "Gonzaga",           abbr: "GONZ",  record: "30-3"  },
+        { seed: 4,  name: "Arkansas",          abbr: "ARK",   record: "26-8"  },
+        { seed: 5,  name: "Wisconsin",         abbr: "WIS",   record: "24-10" },
+        { seed: 6,  name: "BYU",               abbr: "BYU",   record: "23-11" },
+        { seed: 7,  name: "Miami",             abbr: "MIA",   record: "25-8"  },
+        { seed: 8,  name: "Villanova",         abbr: "NOVA",  record: "24-8"  },
+        { seed: 9,  name: "Utah St.",          abbr: "USU",   record: "28-6"  },
+        { seed: 10, name: "Missouri",          abbr: "MIZ",   record: "20-12" },
+        { seed: 11, name: "Texas/NC State",    abbr: "FF",    record: "—"     },
+        { seed: 12, name: "High Point",        abbr: "HPU",   record: "30-4"  },
+        { seed: 13, name: "Hawaii",            abbr: "HAW",   record: "24-8"  },
+        { seed: 14, name: "Kennesaw St.",      abbr: "KSU",   record: "21-13" },
+        { seed: 15, name: "Queens",            abbr: "QU",    record: "21-13" },
+        { seed: 16, name: "Long Island",       abbr: "LIU",   record: "24-10" },
       ]
     },
     {
@@ -77,22 +77,22 @@ const TOURNAMENT_DATA = {
       color: "#FFE66D",
       finalFourSlot: 2,
       teams: [
-        { seed: 1,  name: "Auburn",          abbr: "AUB",   record: "30-4"  },
-        { seed: 2,  name: "Michigan St.",    abbr: "MSU",   record: "27-8"  },
-        { seed: 3,  name: "Iowa St.",        abbr: "ISU",   record: "27-7"  },
-        { seed: 4,  name: "Texas A&M",       abbr: "TXAM",  record: "24-9"  },
-        { seed: 5,  name: "Michigan",        abbr: "MICH",  record: "24-10" },
-        { seed: 6,  name: "Ole Miss",        abbr: "MISS",  record: "22-11" },
-        { seed: 7,  name: "Marquette",       abbr: "MU",    record: "24-10" },
-        { seed: 8,  name: "Louisville",      abbr: "LOU",   record: "25-9"  },
-        { seed: 9,  name: "Creighton",       abbr: "CRE",   record: "24-11" },
-        { seed: 10, name: "New Mexico",      abbr: "UNM",   record: "29-5"  },
-        { seed: 11, name: "N.C. State",      abbr: "NCST",  record: "21-14" },
-        { seed: 12, name: "McNeese",         abbr: "MCN",   record: "28-5"  },
-        { seed: 13, name: "Yale",            abbr: "YALE",  record: "25-7"  },
-        { seed: 14, name: "Troy",            abbr: "TROY",  record: "26-9"  },
-        { seed: 15, name: "Bryant",          abbr: "BRY",   record: "23-11" },
-        { seed: 16, name: "AMER/Mount St.M", abbr: "A/M",   record: "—"     },
+        { seed: 1,  name: "Florida",           abbr: "FLA",   record: "26-7"  },
+        { seed: 2,  name: "Houston",           abbr: "HOU",   record: "28-6"  },
+        { seed: 3,  name: "Illinois",          abbr: "ILL",   record: "24-8"  },
+        { seed: 4,  name: "Nebraska",          abbr: "NEB",   record: "26-6"  },
+        { seed: 5,  name: "Vanderbilt",        abbr: "VAN",   record: "26-8"  },
+        { seed: 6,  name: "North Carolina",    abbr: "UNC",   record: "24-8"  },
+        { seed: 7,  name: "Saint Mary's",      abbr: "SMC",   record: "27-5"  },
+        { seed: 8,  name: "Clemson",           abbr: "CLEM",  record: "24-10" },
+        { seed: 9,  name: "Iowa",              abbr: "IOWA",  record: "21-12" },
+        { seed: 10, name: "Texas A&M",         abbr: "TXAM",  record: "21-11" },
+        { seed: 11, name: "VCU",               abbr: "VCU",   record: "27-7"  },
+        { seed: 12, name: "McNeese",           abbr: "MCN",   record: "28-5"  },
+        { seed: 13, name: "Troy",              abbr: "TROY",  record: "22-11" },
+        { seed: 14, name: "Penn",              abbr: "PENN",  record: "18-11" },
+        { seed: 15, name: "Idaho",             abbr: "IDA",   record: "21-14" },
+        { seed: 16, name: "PV A&M/Lehigh",     abbr: "FF",    record: "—"     },
       ]
     },
     {
@@ -101,51 +101,24 @@ const TOURNAMENT_DATA = {
       color: "#A78BFA",
       finalFourSlot: 3,
       teams: [
-        { seed: 1,  name: "Houston",         abbr: "HOU",   record: "30-4"  },
-        { seed: 2,  name: "Tennessee",       abbr: "TENN",  record: "27-7"  },
-        { seed: 3,  name: "Kansas",          abbr: "KAN",   record: "24-10" },
-        { seed: 4,  name: "Purdue",          abbr: "PUR",   record: "24-10" },
-        { seed: 5,  name: "Clemson",         abbr: "CLEM",  record: "23-11" },
-        { seed: 5,  name: "Illinois",        abbr: "ILL",   record: "22-13" },
-        { seed: 6,  name: "Missouri",        abbr: "MIZ",   record: "23-11" },
-        { seed: 7,  name: "Texas Tech",      abbr: "TTU",   record: "23-11" },
-        { seed: 8,  name: "UConn",           abbr: "UCONN", record: "24-11" },
-        { seed: 9,  name: "Oklahoma",        abbr: "OU",    record: "21-13" },
-        { seed: 10, name: "Arkansas",        abbr: "ARK",   record: "22-12" },
-        { seed: 11, name: "San Diego St.",   abbr: "SDSU",  record: "20-14" },
-        { seed: 12, name: "Colorado St.",    abbr: "CSU",   record: "27-8"  },
-        { seed: 13, name: "Omaha",           abbr: "OMA",   record: "25-9"  },
-        { seed: 14, name: "N. Kentucky",     abbr: "NKU",   record: "24-11" },
-        { seed: 15, name: "SIUE",            abbr: "SIUE",  record: "23-12" },
-        { seed: 16, name: "SIU Edwards.",    abbr: "SIE",   record: "21-14" },
+        { seed: 1,  name: "Michigan",          abbr: "MICH",  record: "31-3"  },
+        { seed: 2,  name: "Iowa St.",          abbr: "ISU",   record: "27-7"  },
+        { seed: 3,  name: "Virginia",          abbr: "UVA",   record: "29-5"  },
+        { seed: 4,  name: "Alabama",           abbr: "ALA",   record: "23-9"  },
+        { seed: 5,  name: "Texas Tech",        abbr: "TTU",   record: "22-10" },
+        { seed: 6,  name: "Tennessee",         abbr: "TENN",  record: "22-11" },
+        { seed: 7,  name: "Kentucky",          abbr: "UK",    record: "21-13" },
+        { seed: 8,  name: "Georgia",           abbr: "UGA",   record: "22-10" },
+        { seed: 9,  name: "Saint Louis",       abbr: "SLU",   record: "28-5"  },
+        { seed: 10, name: "Santa Clara",       abbr: "SCU",   record: "26-8"  },
+        { seed: 11, name: "SMU/Miami (OH)",    abbr: "FF",    record: "—"     },
+        { seed: 12, name: "Akron",             abbr: "AKR",   record: "29-5"  },
+        { seed: 13, name: "Hofstra",           abbr: "HOF",   record: "24-10" },
+        { seed: 14, name: "Wright St.",        abbr: "WSU",   record: "23-11" },
+        { seed: 15, name: "Tennessee St.",     abbr: "TSU",   record: "23-9"  },
+        { seed: 16, name: "UMBC/Howard",       abbr: "FF",    record: "—"     },
       ]
     }
-  ]
-};
-
-// Normalized Midwest region (clean 16 teams)
-TOURNAMENT_DATA.regions[3] = {
-  id: "midwest",
-  name: "Midwest",
-  color: "#A78BFA",
-  finalFourSlot: 3,
-  teams: [
-    { seed: 1,  name: "Houston",         abbr: "HOU",   record: "30-4"  },
-    { seed: 2,  name: "Tennessee",       abbr: "TENN",  record: "27-7"  },
-    { seed: 3,  name: "Kansas",          abbr: "KAN",   record: "24-10" },
-    { seed: 4,  name: "Purdue",          abbr: "PUR",   record: "24-10" },
-    { seed: 5,  name: "Illinois",        abbr: "ILL",   record: "22-13" },
-    { seed: 6,  name: "Missouri",        abbr: "MIZ",   record: "23-11" },
-    { seed: 7,  name: "Texas Tech",      abbr: "TTU",   record: "23-11" },
-    { seed: 8,  name: "UConn",           abbr: "UCONN", record: "24-11" },
-    { seed: 9,  name: "Oklahoma",        abbr: "OU",    record: "21-13" },
-    { seed: 10, name: "Arkansas",        abbr: "ARK",   record: "22-12" },
-    { seed: 11, name: "San Diego St.",   abbr: "SDSU",  record: "20-14" },
-    { seed: 12, name: "Colorado St.",    abbr: "CSU",   record: "27-8"  },
-    { seed: 13, name: "Omaha",           abbr: "OMA",   record: "25-9"  },
-    { seed: 14, name: "N. Kentucky",     abbr: "NKU",   record: "24-11" },
-    { seed: 15, name: "Winthrop",        abbr: "WIN",   record: "24-10" },
-    { seed: 16, name: "SIUE",            abbr: "SIUE",  record: "23-12" },
   ]
 };
 
